@@ -53,7 +53,6 @@ def load_image(name, scx, scy, colorkey=None):
 
 class Platform(pygame.sprite.Sprite):
     def __init__(self, x, y, color, group=True):
-        #("X")
         if group:
             super().__init__(all_sprites, borders)
         else:
@@ -73,7 +72,6 @@ class Platform(pygame.sprite.Sprite):
             pygame.draw.rect(self.image, pygame.Color(self.color), (0, 0, 50, 12))
             self.rect.x = random.randint(0, 300)
             x = random.randint(min(135, max(50, h // 350)), min(135, max(50, h // 350)))
-            #(x)
             self.rect.y = max_y - x
             max_y = self.rect.y
             self.block = False
@@ -85,7 +83,6 @@ class MovingPlatform(Platform):
 
     def update(self):
         self.rect.x += int(self.mv)
-        #(self.rect.x)
         if self.rect.x >= 290:
             self.mv = -1
 
@@ -120,8 +117,6 @@ class RECT(pygame.sprite.Sprite):
 class Ball(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
-        #print('ASD')
-        #print(x, y)
         super().__init__(all_sprites, balls)
         self.ax = x
         self.image = pygame.Surface((40, 40), pygame.SRCALPHA, 32)
@@ -295,7 +290,6 @@ Platform(random.randint(0, width - 50), 50, "black")
 Platform(random.randint(0, width - 50), 100, "black")
 Platform(random.randint(0, width - 50), 150, "black")
 Platform(random.randint(0, width - 50), 250, "black")
-#Platform(random.randint(0, width - 50), 250, "black")
 Platform(random.randint(0, width - 50), 300, "black")
 Platform(random.randint(0, width - 50), 350, "black")
 Platform(random.randint(0, width - 50), 400, "black")
@@ -328,10 +322,8 @@ Player1 = Cur(all_sprites)
 Player2 = Cur(all_sprites, 350)
 start_screen()
 while running:
-    #print(spr.rect.y)
     screen.fill(((255, 255, 255)))
     score(cnt, 10, 525, 30)
-    #pygame.draw.circle(screen, pygame.color.Color('red'), (100, 100), 50)
     for event in pygame.event.get():
         if event.type == pygame.QUIT or pygame.key.get_pressed()[pygame.K_ESCAPE]:
             terminate()
@@ -389,7 +381,6 @@ while running:
         if pygame.sprite.collide_rect(ball, mnstr):
             mnstr.rect.y -= 3500
             mnstr.rect.x = random.randint(75, 275)
-            #print(mnstr.rect.y)
             cnt += 3000
     if pygame.sprite.collide_rect(spr, r1) and Player1.k == 1:
         spring.play()
@@ -459,11 +450,9 @@ c = 0
 while Player1.rect.y <= 580 or Player2.rect.y <= 580:
     screen.fill((255, 255, 255))
     left = 0
-    #print("XX")
     Player1.rect.y += 1
     Player2.rect.y += 1
     all_sprites.draw(screen)
-    #all_sprites.update()
     clock.tick(200)
     pygame.display.flip()
 
